@@ -31,6 +31,17 @@ class UISpinnerUITests: XCTestCase {
     func testExample() {
         // Use recording to get started writing UI tests.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
+        
+        let app = XCUIApplication()
+        app.tables/*@START_MENU_TOKEN@*/.staticTexts["001"]/*[[".cells.staticTexts[\"001\"]",".staticTexts[\"001\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
+        app.staticTexts["测试"].tap()
+        
+        let element = app.children(matching: .window).element(boundBy: 0).children(matching: .other).element
+        element.children(matching: .other).element(boundBy: 0).tap()
+        element.tap()
+        element.tap()
+        element.tap()
+        
     }
     
 }
