@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		03813BD793163EB74A5C417C /* Pods_UISpinner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3515A011D51986465A564A3 /* Pods_UISpinner.framework */; };
+		682A210921591BDF002F7B1D /* SpinnerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 682A210821591BDF002F7B1D /* SpinnerController.swift */; };
 		683718012140BBCE002657A0 /* UISpinnerDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 683718002140BBCE002657A0 /* UISpinnerDataSource.swift */; };
 		683718032140BC39002657A0 /* UISpinnerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 683718022140BC39002657A0 /* UISpinnerDelegate.swift */; };
 		68B58043213FC32300288312 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68B58042213FC32300288312 /* AppDelegate.swift */; };
@@ -45,6 +46,7 @@
 		242BADBBDC79E0DF147853D3 /* Pods_UISpinnerUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UISpinnerUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E932993C3A988B220F0466C /* Pods-UISpinnerUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UISpinnerUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-UISpinnerUITests/Pods-UISpinnerUITests.release.xcconfig"; sourceTree = "<group>"; };
 		47FE91282854A5E5B6DC5456 /* Pods-UISpinner.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UISpinner.debug.xcconfig"; path = "Pods/Target Support Files/Pods-UISpinner/Pods-UISpinner.debug.xcconfig"; sourceTree = "<group>"; };
+		682A210821591BDF002F7B1D /* SpinnerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpinnerController.swift; sourceTree = "<group>"; };
 		683718002140BBCE002657A0 /* UISpinnerDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UISpinnerDataSource.swift; sourceTree = "<group>"; };
 		683718022140BC39002657A0 /* UISpinnerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UISpinnerDelegate.swift; sourceTree = "<group>"; };
 		68B5803F213FC32300288312 /* UISpinner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UISpinner.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -140,6 +142,7 @@
 				68B5804B213FC32500288312 /* LaunchScreen.storyboard */,
 				68B5804E213FC32500288312 /* Info.plist */,
 				68C1BE5C214215D600ECBEB8 /* TestView.swift */,
+				682A210821591BDF002F7B1D /* SpinnerController.swift */,
 			);
 			path = UISpinner;
 			sourceTree = "<group>";
@@ -400,6 +403,7 @@
 				68B58045213FC32300288312 /* ViewController.swift in Sources */,
 				68B58072213FD4C700288312 /* UISpinner.swift in Sources */,
 				68B58043213FC32300288312 /* AppDelegate.swift in Sources */,
+				682A210921591BDF002F7B1D /* SpinnerController.swift in Sources */,
 				683718032140BC39002657A0 /* UISpinnerDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

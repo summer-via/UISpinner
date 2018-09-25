@@ -12,19 +12,26 @@ class UISpinner: UIView {
     var isClicking=false
     var delegate:UISpinnerDelegate?
     var dataSource:UISpinnerDataSource?
+    var rootView:UIView?
+    var lt:CGPoint = CGPoint(x: 0, y: 0)
     private var table:UITableView=UITableView()
     private var title:UILabel=UILabel()
     private var arrow:UIImageView=UIImageView()
     private var base:UIView=UIView()
-    convenience init() {
+    private var spinnerWidth:CGFloat?
+    convenience init(rootView:UIView) {
         let point=CGRect(x: 0, y: 0, width: 0, height: 0)
-        self.init(frame: point)
+        self.init(frame: point,rootView:rootView)
         
     }
     override init(frame: CGRect) {
         super.init(frame: frame)
+    }
+    convenience init(frame: CGRect,rootView:UIView) {
+        self.init(frame: frame)
+        self.rootView = rootView
         addSubview(base)
-        addSubview(table)
+        rootView.addSubview(table)
         base.addSubview(title)
         base.addSubview(arrow)
         base.backgroundColor = .clear
@@ -41,7 +48,9 @@ class UISpinner: UIView {
         table.delegate=self
         table.dataSource=self
         table.backgroundColor = .white
-        
+    }
+    public func setSpinner(width:CGFloat){
+        self.spinnerWidth = width
     }
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -62,6 +71,10 @@ class UISpinner: UIView {
             if !isClicking {
                 base.frame.size = newValue.size
                 base.frame.origin=CGPoint(x: 0, y: 0)
+                lt = CGPoint(x: 0, y: base.frame.height)
+                print("orign",lt)
+                lt = self.convert(lt, to: rootView)
+                print("orign",lt)
                 let bw=base.frame
                 let v1=bw.height*0.6
                 let v2=(bw.height-v1)/2
@@ -77,16 +90,20 @@ class UISpinner: UIView {
         if table.frame.height>0 {
             UIView.animate(withDuration: 0.2, animations: {
                 self.arrow.transform = CGAffineTransform.init(rotationAngle: CGFloat(0))
-                self.frame.size=CGSize(width: self.base.frame.width, height: self.base.frame.height)
-                self.table.frame=CGRect(x: 0, y: self.base.frame.height, width: self.base.frame.width, height: 0)
+//                self.frame.size=CGSize(width: self.base.frame.width, height: self.base.frame.height)
+                self.table.frame.size=CGSize(width: self.base.frame.width, height: 0)
+                self.table.frame.origin = self.lt
             })
         }else {
             UIView.animate(withDuration: 0.2, animations: {
-                self.table.frame=CGRect(x: 0, y: self.frame.height, width: self.base.frame.width, height: self.base.frame.height*4)
-                self.frame.size=CGSize(width: self.base.frame.width, height: self.base.frame.height+self.table.frame.height)
+                self.table.frame.size=CGSize(width: self.base.frame.width, height: self.base.frame.height*4)
+                self.table.frame.origin = self.lt
+
+//                self.frame.size=CGSize(width: self.base.frame.width, height: self.base.frame.height+self.table.frame.height)
                 self.arrow.transform = CGAffineTransform.init(rotationAngle: CGFloat(Double.pi))
             })
         }
+        print(table.frame)
         setNeedsDisplay()
         isClicking=false
     }

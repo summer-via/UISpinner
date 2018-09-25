@@ -7,15 +7,16 @@
 //
 
 import UIKit
-import SnapKit
+
 
 class ViewController: UIViewController {
+    static var rootView:UIView!
     var datas=["001","002","003"]
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         self.view.backgroundColor = .black
-        let spinner=UISpinner()
+        let spinner=UISpinner(rootView: self.view)
         spinner.frame=CGRect(x: 100, y: 100, width: 100, height: 50)
         view.addSubview(spinner)
         spinner.setTitle(p: "测试")
@@ -23,11 +24,7 @@ class ViewController: UIViewController {
         spinner.backgroundColor = .white
         spinner.dataSource=self
         spinner.delegate=self
-        spinner.snp.makeConstraints{make in
-            make.left.equalTo(view).offset(100)
-            make.top.equalTo(view).offset(100)
-            make.width.height.equalTo(100)
-        }
+
         print(spinner.frame)
     }
 
@@ -35,8 +32,6 @@ class ViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-
 }
 extension ViewController:UISpinnerDataSource{
     func spinner(_ spinner: UITableView, numberOfRowsInSection section: Int) -> Int {
