@@ -13,25 +13,26 @@ class UISpinner: UIView {
     var delegate:UISpinnerDelegate?
     var dataSource:UISpinnerDataSource?
     var rootView:UIView?
-    var lt:CGPoint = CGPoint(x: 0, y: 0)
-    private var table:UITableView=UITableView()
-    private var title:UILabel=UILabel()
-    private var arrow:UIImageView=UIImageView()
+    var context:UIViewController?
+    var align:Int = 0 //0:左对齐，!0：右对齐
+    var table:UITableView=UITableView()
+    var title:UILabel=UILabel()
+    var arrow:UIImageView=UIImageView()
     private var base:UIView=UIView()
-    private var spinnerWidth:CGFloat?
-    convenience init(rootView:UIView) {
+    
+    convenience init(context:UIViewController) {
         let point=CGRect(x: 0, y: 0, width: 0, height: 0)
-        self.init(frame: point,rootView:rootView)
-        
+        self.init(frame: point,context:context)
     }
     override init(frame: CGRect) {
         super.init(frame: frame)
     }
-    convenience init(frame: CGRect,rootView:UIView) {
+    convenience init(frame: CGRect,context:UIViewController) {
         self.init(frame: frame)
-        self.rootView = rootView
+        self.context = context
         addSubview(base)
-        rootView.addSubview(table)
+        table.frame.size = CGSize(width: base.frame.width, height: 0)
+        context.view.addSubview(table)
         base.addSubview(title)
         base.addSubview(arrow)
         base.backgroundColor = .clear
@@ -44,13 +45,10 @@ class UISpinner: UIView {
         
         arrow.image=UIImage(named: "下箭头灰")
         table.frame=CGRect(x: 0, y: frame.height, width: frame.width, height: 0)
-        
         table.delegate=self
         table.dataSource=self
         table.backgroundColor = .white
-    }
-    public func setSpinner(width:CGFloat){
-        self.spinnerWidth = width
+        table.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
     }
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -66,15 +64,10 @@ class UISpinner: UIView {
             return super.frame
         }
         set{
-            print(frame)
             super.frame = newValue
             if !isClicking {
                 base.frame.size = newValue.size
                 base.frame.origin=CGPoint(x: 0, y: 0)
-                lt = CGPoint(x: 0, y: base.frame.height)
-                print("orign",lt)
-                lt = self.convert(lt, to: rootView)
-                print("orign",lt)
                 let bw=base.frame
                 let v1=bw.height*0.6
                 let v2=(bw.height-v1)/2
@@ -87,24 +80,28 @@ class UISpinner: UIView {
     }
     @objc func click(recognizer:UITapGestureRecognizer) -> Void {
         isClicking=true
+         let pt = self.convert(CGPoint(x: 0, y: base.frame.height), to: context?.view)
+        if(align == 0) {
+           
+            self.table.frame.origin = pt
+        }
+        else{
+            self.table.frame.origin = CGPoint(x: pt.x - self.table.frame.width + self.base.frame.width, y: pt.y)
+        }
         if table.frame.height>0 {
             UIView.animate(withDuration: 0.2, animations: {
                 self.arrow.transform = CGAffineTransform.init(rotationAngle: CGFloat(0))
-//                self.frame.size=CGSize(width: self.base.frame.width, height: self.base.frame.height)
-                self.table.frame.size=CGSize(width: self.base.frame.width, height: 0)
-                self.table.frame.origin = self.lt
+                self.table.frame.size=CGSize(width: self.table.frame.width, height: 0)
             })
         }else {
             UIView.animate(withDuration: 0.2, animations: {
-                self.table.frame.size=CGSize(width: self.base.frame.width, height: self.base.frame.height*4)
-                self.table.frame.origin = self.lt
-
-//                self.frame.size=CGSize(width: self.base.frame.width, height: self.base.frame.height+self.table.frame.height)
+//                self.table.frame.size=CGSize(width: self.base.frame.width, height: self.base.frame.height)
+                self.table.frame.size=CGSize(width: self.table.frame.width, height: self.base.frame.height*4)
+                
                 self.arrow.transform = CGAffineTransform.init(rotationAngle: CGFloat(Double.pi))
             })
         }
         print(table.frame)
-        setNeedsDisplay()
         isClicking=false
     }
     
@@ -117,7 +114,6 @@ extension UISpinner:UITableViewDataSource{
         else {
             return 0;
         }
-        
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -132,6 +128,7 @@ extension UISpinner:UITableViewDelegate{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){
         if delegate != nil{
             self.delegate?.spinner!(tableView, didSelectRowAt: indexPath)
+            self.title.text = self.dataSource?.spinner(tableView, StringforRowAt: indexPath)
             self.click(recognizer: UITapGestureRecognizer())
         }
     }

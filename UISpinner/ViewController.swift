@@ -8,7 +8,6 @@
 
 import UIKit
 
-
 class ViewController: UIViewController {
     static var rootView:UIView!
     var datas=["001","002","003"]
@@ -16,21 +15,16 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         self.view.backgroundColor = .black
-        let spinner=UISpinner(rootView: self.view)
+        let spinner=UISpinner(context: self)
         spinner.frame=CGRect(x: 100, y: 100, width: 100, height: 50)
+        spinner.align = 1
+        spinner.table.frame.size = CGSize(width: 200, height: 0)
         view.addSubview(spinner)
         spinner.setTitle(p: "测试")
         spinner.setFont(f: .systemFont(ofSize: 20))
         spinner.backgroundColor = .white
         spinner.dataSource=self
         spinner.delegate=self
-
-        print(spinner.frame)
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 }
 extension ViewController:UISpinnerDataSource{
@@ -42,6 +36,9 @@ extension ViewController:UISpinnerDataSource{
         let cell=UITableViewCell()
         cell.textLabel?.text=datas[indexPath.row]
         return cell
+    }
+    func spinner(_ spinner: UITableView, StringforRowAt indexPath: IndexPath) -> String {
+        return datas[indexPath.row]
     }
 }
 extension ViewController:UISpinnerDelegate{

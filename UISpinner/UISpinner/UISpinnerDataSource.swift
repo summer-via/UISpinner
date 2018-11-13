@@ -11,5 +11,6 @@ import UIKit
 protocol UISpinnerDataSource {
     func  spinner(_ spinner: UITableView, numberOfRowsInSection section: Int) -> Int
     
-    func  spinner(_ spinner: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
+    func spinner(_ spinner: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
+    func spinner(_ spinner:UITableView,StringforRowAt indexPath:IndexPath)->String
 }
