@@ -16,13 +16,12 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         self.view.backgroundColor = .black
         let spinner=UISpinner(context: self)
-        spinner.frame=CGRect(x: 100, y: 100, width: 100, height: 50)
-        spinner.align = 1
-        spinner.table.frame.size = CGSize(width: 200, height: 0)
         view.addSubview(spinner)
-        spinner.setTitle(p: "测试")
-        spinner.setFont(f: .systemFont(ofSize: 20))
-        spinner.backgroundColor = .white
+        spinner.frame=CGRect(x: 100, y: 100, width: 100, height: 50)
+        spinner.dropDownWidth = 200
+        spinner.title.text = "请选择"
+        print(spinner.center,spinner.title.center)
+//        spinner.setFont(f: .systemFont(ofSize: 20))
         spinner.dataSource=self
         spinner.delegate=self
     }
