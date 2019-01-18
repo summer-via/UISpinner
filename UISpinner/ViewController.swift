@@ -21,7 +21,7 @@ class ViewController: UIViewController {
         spinner.dropDownWidth = 200
         spinner.title.text = "请选择"
         print(spinner.center,spinner.title.center)
-//        spinner.setFont(f: .systemFont(ofSize: 20))
+        spinner.setFont(f: .systemFont(ofSize: 20))
         spinner.dataSource=self
         spinner.delegate=self
     }

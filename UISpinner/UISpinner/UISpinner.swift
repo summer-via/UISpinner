@@ -18,8 +18,25 @@ class UISpinner: UIView {
     var table:UITableView=UITableView()
     var title:UILabel=UILabel()
     var arrow:UIImageView=UIImageView()
-    var dropDownHeight:Int = 300
-    var dropDownWidth:Int = 100
+    var onFold:((_ spinner:UISpinner)->Void)?
+    var onUnFold:((_ spinner:UISpinner)->Void)?
+    var isDropdown = false
+    var dropDownHeight:CGFloat = 0{
+        didSet{
+            let ld = self.convert(CGPoint(x: 0, y: bounds.height), to: context?.view)
+            var navigatorbarHeight = CGFloat(0.0)
+            if let height = context?.navigationController?.navigationBar.frame.height{
+                navigatorbarHeight = height
+            }
+            let reset = UIScreen.main.bounds.maxY-UIApplication.shared.statusBarFrame.height-navigatorbarHeight-ld.y
+            dropDownHeight = min(reset, dropDownHeight)
+        }
+    }
+    var dropDownWidth:CGFloat = 100{
+        didSet{
+            dropDownWidth = min(UIScreen.main.bounds.width, dropDownWidth)
+        }
+    }
     convenience init(context:UIViewController) {
         let point=CGRect(x: 0, y: 0, width: 0, height: 0)
         self.init(frame: point,context:context)
@@ -69,25 +86,39 @@ class UISpinner: UIView {
         }
     }
     @objc func click(recognizer:UITapGestureRecognizer) -> Void {
-        
-         let pt = self.convert(CGPoint(x: 0, y: self.frame.height), to: context?.view)
+        context?.view.bringSubview(toFront: table)
+        calculate()
+        if isDropdown {
+            fold()
+        }else {
+            unFold()
+        }
+    }
+    func calculate(){
+        let pt = self.convert(CGPoint(x: 0, y: self.frame.height), to: context?.view)
         if(align == 0) {
             self.table.frame.origin = pt
         }
         else{
-            self.table.frame.origin = CGPoint(x: pt.x - self.table.frame.width + self.frame.width, y: pt.y)
+            self.table.frame.origin = CGPoint(x: pt.x - CGFloat(self.dropDownWidth) + self.frame.width, y: pt.y)
         }
-        if table.frame.height>0 {
-            UIView.animate(withDuration: 0.2, animations: {
-                self.arrow.transform = CGAffineTransform.init(rotationAngle: CGFloat(0))
-                self.table.frame.size=CGSize(width: self.dropDownWidth, height: 0)
-            })
-        }else {
-            UIView.animate(withDuration: 0.2, animations: {
-                self.table.frame.size=CGSize(width: self.dropDownWidth, height: self.dropDownHeight)
-                self.arrow.transform = CGAffineTransform.init(rotationAngle: CGFloat(Double.pi))
-            })
-        }
+    }
+    func fold(){
+        isDropdown = false
+        onFold?(self)
+        UIView.animate(withDuration: 0.2, animations: {
+            self.arrow.transform = CGAffineTransform.init(rotationAngle: CGFloat(0))
+            self.table.frame.size=CGSize(width: self.dropDownWidth, height: 0)
+        })
+    }
+    func unFold(){
+        isDropdown = true
+        calculate()
+        onUnFold?(self)
+        UIView.animate(withDuration: 0.2, animations: {
+            self.table.frame.size=CGSize(width: self.dropDownWidth, height: self.dropDownHeight)
+            self.arrow.transform = CGAffineTransform.init(rotationAngle: CGFloat(Double.pi))
+        })
     }
     func select(index:Int){
         if(index>=0 && dataSource != nil && index < dataSource!.spinner(table, numberOfRowsInSection: index)){
