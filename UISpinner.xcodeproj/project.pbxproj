@@ -7,23 +7,23 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		6875B5A42159DE5A001B6F1C /* UISpinnerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6875B5A12159DE5A001B6F1C /* UISpinnerDelegate.swift */; };
-		6875B5A52159DE5A001B6F1C /* UISpinner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6875B5A22159DE5A001B6F1C /* UISpinner.swift */; };
-		6875B5A62159DE5A001B6F1C /* UISpinnerDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6875B5A32159DE5A001B6F1C /* UISpinnerDataSource.swift */; };
 		68B58043213FC32300288312 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68B58042213FC32300288312 /* AppDelegate.swift */; };
 		68B58045213FC32300288312 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68B58044213FC32300288312 /* ViewController.swift */; };
 		68B5804A213FC32500288312 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 68B58049213FC32500288312 /* Assets.xcassets */; };
+		68BE79DD21F1C39400778452 /* UISpinnerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68BE79DA21F1C39400778452 /* UISpinnerDelegate.swift */; };
+		68BE79DE21F1C39400778452 /* UISpinnerDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68BE79DB21F1C39400778452 /* UISpinnerDataSource.swift */; };
+		68BE79DF21F1C39400778452 /* UISpinner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68BE79DC21F1C39400778452 /* UISpinner.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		6875B5A12159DE5A001B6F1C /* UISpinnerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UISpinnerDelegate.swift; sourceTree = "<group>"; };
-		6875B5A22159DE5A001B6F1C /* UISpinner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UISpinner.swift; sourceTree = "<group>"; };
-		6875B5A32159DE5A001B6F1C /* UISpinnerDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UISpinnerDataSource.swift; sourceTree = "<group>"; };
 		68B5803F213FC32300288312 /* UISpinner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UISpinner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		68B58042213FC32300288312 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		68B58044213FC32300288312 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		68B58049213FC32500288312 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		68B5804E213FC32500288312 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		68BE79DA21F1C39400778452 /* UISpinnerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UISpinnerDelegate.swift; sourceTree = "<group>"; };
+		68BE79DB21F1C39400778452 /* UISpinnerDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UISpinnerDataSource.swift; sourceTree = "<group>"; };
+		68BE79DC21F1C39400778452 /* UISpinner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UISpinner.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,8 +47,10 @@
 		68B58036213FC32300288312 = {
 			isa = PBXGroup;
 			children = (
-				68B58041213FC32300288312 /* UISpinner */,
+				68BE79E021F1C4A400778452 /* Resources */,
+				68B58041213FC32300288312 /* Example */,
 				68B58040213FC32300288312 /* Products */,
+				68BE79D921F1C39400778452 /* UISpinner */,
 				37AB2B528D05CD1FC3EB18CE /* Frameworks */,
 			);
 			sourceTree = "<group>";
@@ -61,26 +63,32 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		68B58041213FC32300288312 /* UISpinner */ = {
+		68B58041213FC32300288312 /* Example */ = {
 			isa = PBXGroup;
 			children = (
-				68B58070213FCA5C00288312 /* UISpinner */,
 				68B58042213FC32300288312 /* AppDelegate.swift */,
 				68B58044213FC32300288312 /* ViewController.swift */,
-				68B58049213FC32500288312 /* Assets.xcassets */,
 				68B5804E213FC32500288312 /* Info.plist */,
+			);
+			path = Example;
+			sourceTree = "<group>";
+		};
+		68BE79D921F1C39400778452 /* UISpinner */ = {
+			isa = PBXGroup;
+			children = (
+				68BE79DA21F1C39400778452 /* UISpinnerDelegate.swift */,
+				68BE79DB21F1C39400778452 /* UISpinnerDataSource.swift */,
+				68BE79DC21F1C39400778452 /* UISpinner.swift */,
 			);
 			path = UISpinner;
 			sourceTree = "<group>";
 		};
-		68B58070213FCA5C00288312 /* UISpinner */ = {
+		68BE79E021F1C4A400778452 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				6875B5A22159DE5A001B6F1C /* UISpinner.swift */,
-				6875B5A32159DE5A001B6F1C /* UISpinnerDataSource.swift */,
-				6875B5A12159DE5A001B6F1C /* UISpinnerDelegate.swift */,
+				68B58049213FC32500288312 /* Assets.xcassets */,
 			);
-			path = UISpinner;
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -163,11 +171,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6875B5A52159DE5A001B6F1C /* UISpinner.swift in Sources */,
-				6875B5A62159DE5A001B6F1C /* UISpinnerDataSource.swift in Sources */,
 				68B58045213FC32300288312 /* ViewController.swift in Sources */,
+				68BE79DE21F1C39400778452 /* UISpinnerDataSource.swift in Sources */,
 				68B58043213FC32300288312 /* AppDelegate.swift in Sources */,
-				6875B5A42159DE5A001B6F1C /* UISpinnerDelegate.swift in Sources */,
+				68BE79DD21F1C39400778452 /* UISpinnerDelegate.swift in Sources */,
+				68BE79DF21F1C39400778452 /* UISpinner.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -294,7 +302,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = WBQ3KXHQR3;
-				INFOPLIST_FILE = UISpinner/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Example/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -313,7 +321,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = WBQ3KXHQR3;
-				INFOPLIST_FILE = UISpinner/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Example/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
